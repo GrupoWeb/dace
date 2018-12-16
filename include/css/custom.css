@@ -1,0 +1,11 @@
+
+.logo{
+    width: 220px;
+    height: 120px;
+    max-height: 250px !important;
+    
+      }
+
+.caja-logo{
+    padding: 0.6rem;
+}
