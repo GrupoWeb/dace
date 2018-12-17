@@ -40,6 +40,8 @@ CREATE TABLE Capacitacion_rol_tema(
 	idCapacitacion integer not null,
 	idPersona_Rol integer not null,
 	Cantidad_Persona integer not null,
+	mujeres integer,
+	hombres integer,
 	observacion varchar(300),
 	fecha_capacitacion date,
 	horaInicial Datetime,
