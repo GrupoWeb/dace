@@ -349,9 +349,97 @@ function deletePregunta(form,pagina,modal) {
     })
 }
 
+function UploadFile() {
+    $('#upload').submit(function (e) {
+        e.preventDefault();
+
+        var formData = new FormData($(this)[0]);
+        //formData.append("dato","valor");
+        $.ajax({
+            type: "POST",
+            url: "../model/addFileUpload.php",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (event) {
+                if (event) {
+                    alert("Dato Ingresado");
+                    $("#contenedor").load("catalogos/uploadFile.php");
+                } else {
+                    alert("Error al subir archivo");
+                }
+            }
+        })
+    })
+}
 
 
+function addAdjunto(form){
+    $(form).submit(function(e){
+        e.preventDefault();
+        let parametros = $(this).serialize();
+        $.ajax({
+            data: new FormData(this),
+            url: 'model/php/uploadfile.php',
+            type: "post",
+            contentType: false,
+                cache: false,
+                processData: false,
+            success: function(response){
+                if(response = 'success'){
+                    swal({
+                        title: "Adjunto",
+                        text: "Dato Almacenado!",
+                        icon: "success",
+                        button: true,
+                        dangerMode: true,
+                      })
+                      .then((willDelete) => {
+                        if (willDelete) {
+                            Iniciar('view/ingresoCapa.php', 'Control de Capacitaciones');
+                        } 
+                      });
+                                       
+                }
+            }
+        })
+       
+    })
+}
 
+
+function addIndicador(form) {
+    $(form).submit(function(e){
+        e.preventDefault();
+        let parametros = $(this).serialize();
+        $.ajax({
+            data: new FormData(this),
+            url: 'model/php/addIndicador.php',
+            type: "post",
+            contentType: false,
+                cache: false,
+                processData: false,
+            success: function(response){
+                if(response = 'success'){
+                    swal({
+                        title: "Indicador",
+                        text: "Dato Almacenado!",
+                        icon: "success",
+                        button: true,
+                        dangerMode: true,
+                      })
+                      .then((willDelete) => {
+                        if (willDelete) {
+                            Iniciar('view/indicadores.php', 'Indicadores');
+                        } 
+                      });
+                                       
+                }
+            }
+        })
+       
+    })
+}
 
 
 
@@ -778,7 +866,7 @@ function COMBO(url, lugar) {
 
 
 
-function llenarCombos(url,lugar) {
+function llenarCombos(url,lugar,idselect,nameselect) {
 	$.ajax({
 		url: url,
 		type: 'post',
@@ -788,10 +876,8 @@ function llenarCombos(url,lugar) {
 			sedeItem = crearElemento('option', '__', '__', 'Seleccione...', '__', '__');
 			sedeItem.setAttribute('value', '');
             $(lugar).append(sedeItem);
-            console.log(lugar);
 			for (i = 0; i < r.length; i++) {
-                
-				option = crearElemento('option', '__', '__', r[i][0], '__', r[i][1]);
+				option = crearElemento('option', '__', '__', r[i][nameselect], '__', r[i][idselect]);
 				$(lugar).append(option);
 			}
 		}

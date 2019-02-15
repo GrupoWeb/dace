@@ -1,6 +1,5 @@
 <head>
-    <script src="include/tables/pregunta.js"></script>
-    <script src="include/js/comandos.js"></script>
+    <script src="include/tables/adjuntoCapa.js"></script>
 </head>
 <body>
     <div class="row wow fadeIn">
@@ -11,7 +10,7 @@
                 </div>
                     <div class="card-body">
                         <!-- <canvas id="pieChart"></canvas> -->
-                        <form role="form" class="form-horizontal" id="addPregunta">
+                        <form role="form"  class="form-horizontal" id="adjunto" >
                             <div class="form-group row">
                                 <label for="Ccapacitacion" class=" control-label">CAPACITACIONES:</label> 
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -74,7 +73,7 @@
                                    
                                 </div>
                                 <div class="card-body">
-                                    <form id="upload" class="form-horizontal" enctype="multipart/form-data">
+                                    
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label class="label">
@@ -91,13 +90,13 @@
                                                 <input type="file" id="file"  name ="file"  />
                                                
                                         </div>
-                                    </form>
+                                    
                                 </div>
                             </div>
                             </div>
 
 
-                            <div class="row">
+                            <div class="form-group  row">
                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                     <button type="submit" class="btn btn-primary">enviar</button>
                                 </div>
@@ -172,9 +171,14 @@
             <div class="card">
                 <div class="card-header">Ingresadas</div>
                 <div class="card-body">
-                    <table class="table table-hover" id="tpregunta">
+                    <table class="table table-hover" id="tAdjunto">
                         <thead>
-                            <th>PREGUNTA</th>
+                            <th>CAPACITACION</th>
+                            <th>CAPACITADOR</th>
+                            <th>ASISTENTES</th>
+                            <th># MUJERES</th>
+                            <th># HOMBRES</th>
+                            <th>ADJUNTO</th>
                             <th>CONTROL</th>
                         </thead>
                     </table>
@@ -186,14 +190,15 @@
 </body>
 <script>
 $(document).ready(function(){
-    addPregunta('#addPregunta');
-    editarPregunta('#EPregunta','view/preguntas.php','#modalEditar');
-    deletePregunta('#DPregunta','view/preguntas.php','#modalEliminar');
+    addAdjunto('#adjunto');
+    //editarPregunta('#EPregunta','view/preguntas.php','#modalEditar');
+    //deletePregunta('#DPregunta','view/preguntas.php','#modalEliminar');
+    llenarCombos('model/php/comboCapacitaciones.php','#Ccapacitacion','idCapacitacion','descripcion')
+    llenarCombos('model/php/combocapacitador.php','#Ccapacitador','idProl','NOMBRE');
     $("#dtBox").DateTimePicker();
     $("#fecha").blur(function(){
         CalcularEdad(this.id);
     });
    
 })
-
 </script>

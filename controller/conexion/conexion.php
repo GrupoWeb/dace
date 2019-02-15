@@ -1,6 +1,6 @@
 <?php 
 class Conexion {
-    private $db = 'sqlsrv:Server=JJOLON;Database=dace';
+    private $db = 'sqlsrv:Server=DESKTOP-KAR9B7P\SQLEXPRESS;Database=dace';
     private $user = 'sa';
     private $password = '123456';
 
